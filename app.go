@@ -3,6 +3,7 @@ package main
 import (
 	"database/sql"
 	"net/http"
+	"os"
 
 	"github.com/juhonamnam/wedding-invitation-server/env"
 	"github.com/juhonamnam/wedding-invitation-server/httphandler"
@@ -32,5 +33,10 @@ func main() {
 
 	handler := corHandler.Handler(mux)
 
-	http.ListenAndServe(":8080", handler)
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
+	http.ListenAndServe(":"+port, handler)
 }

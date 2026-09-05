@@ -13,9 +13,9 @@ var AllowOrigin string
 func init() {
 	err := godotenv.Load()
 	if err != nil {
-		fmt.Println("Error: Cannot read .env file")
-		panic(err.Error())
+		fmt.Println(".env file not found, using environment variables")
 	}
+
 	AdminPassword = os.Getenv("ADMIN_PASSWORD")
 	AllowOrigin = os.Getenv("ALLOW_ORIGIN")
 }
